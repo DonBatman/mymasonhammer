@@ -29,6 +29,9 @@ on_use = function(itemstack, user, pointed_thing)
 		{"default:desert_stone","default_desert_stone", "Desert Stone","stairs:stair_desert_stone"},
 		{"default:stonebrick","default_stone_brick", "Stone Brick","stairs:stair_stonebrick"},
 		{"default:desert_stonebrick","default_desert_stone_brick", "Desert Stone Brick","stairs:stair_desert_stonebrick"},
+		{"default:sandstone","default_sandstone", "Sandstone","stairs:stair_sandstone"},
+		{"default:desert_sandstone","default_desert_sandstone", "Desert Sandstone", "stairs:stair_desert_sandstone"},
+		{"default:silver_sandstone","default_silver_sandstone", "Silver Sandstone", "stairs:stair_silver_sandstone"},
 		}
 	for i in ipairs (default_material) do
 	local item = default_material [i][1]
@@ -67,6 +70,12 @@ on_use = function(itemstack, user, pointed_thing)
 		if mode == "3" then
 			if node.name == item then
 				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				parti(pos)
+			elseif node.name == "mymasonhammer:"..mat.."_foot" then
+				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot2", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				parti(pos)
+			elseif node.name == "mymasonhammer:"..mat.."_foot2" then
+				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot3", param2=minetest.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			end
 		end
