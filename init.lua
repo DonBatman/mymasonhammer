@@ -1,5 +1,5 @@
-dofile(minetest.get_modpath("mymasonhammer").."/hammer.lua")
-dofile(minetest.get_modpath("mymasonhammer").."/nodes.lua")
+dofile(core.get_modpath("mymasonhammer").."/hammer.lua")
+dofile(core.get_modpath("mymasonhammer").."/nodes.lua")
 
 
 

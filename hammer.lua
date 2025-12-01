@@ -2,7 +2,7 @@ local USES = 200
 local mode = {}
 local count = 0
 local function parti(pos)
-  	minetest.add_particlespawner(25, 0.3,
+  	core.add_particlespawner(25, 0.3,
 		pos, pos,
 		{x=2, y=0.2, z=2}, {x=-2, y=2, z=-2},
 		{x=0, y=-6, z=0}, {x=0, y=-10, z=0},
@@ -11,7 +11,7 @@ local function parti(pos)
 		true, "mymasonhammer_parti.png")
 end
 	mode = "1"
-minetest.register_tool( "mymasonhammer:hammer",{
+core.register_tool( "mymasonhammer:hammer",{
 	description = "Mason Hammer",
 	inventory_image = "mymasonhammer_hammer.png",
 	wield_image = "mymasonhammer_hammer.png",
@@ -21,7 +21,7 @@ on_use = function(itemstack, user, pointed_thing)
 		return
 	end
 	local pos = pointed_thing.under
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local default_material = {
 		{"default:cobble", "default_cobble", "Cobble","stairs:stair_cobble"},
 		{"default:desert_cobble","default_desert_cobble", "Desert Cobble","stairs:stair_desert_cobble"},
@@ -41,8 +41,8 @@ on_use = function(itemstack, user, pointed_thing)
 	if pointed_thing.type ~= "node" then
 		return
 	end
-	if minetest.is_protected(pos, user:get_player_name()) then
-		minetest.record_protection_violation(pos, user:get_player_name())
+	if core.is_protected(pos, user:get_player_name()) then
+		core.record_protection_violation(pos, user:get_player_name())
 		return
 	end
 		if mode == "1" then
@@ -50,37 +50,37 @@ on_use = function(itemstack, user, pointed_thing)
 				count = count + 1
 				parti(pos)
 					if count >= 3 then
-						minetest.set_node(pos,{name = stair, param2=minetest.dir_to_facedir(user:get_look_dir())})
+						core.set_node(pos,{name = stair, param2=core.dir_to_facedir(user:get_look_dir())})
 						count = 0
 				end
 			end
 		end
 		if mode == "2" then
 			if node.name == item then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder2", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder2", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			elseif node.name == "mymasonhammer:"..mat.."_ladder2" then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder3", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder3", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			elseif node.name == "mymasonhammer:"..mat.."_ladder3" then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_ladder", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			end
 		end
 		if mode == "3" then
 			if node.name == item then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_foot", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			elseif node.name == "mymasonhammer:"..mat.."_foot" then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot2", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_foot2", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			elseif node.name == "mymasonhammer:"..mat.."_foot2" then
-				minetest.set_node(pos,{name = "mymasonhammer:"..mat.."_foot3", param2=minetest.dir_to_facedir(user:get_look_dir())})
+				core.set_node(pos,{name = "mymasonhammer:"..mat.."_foot3", param2=core.dir_to_facedir(user:get_look_dir())})
 				parti(pos)
 			end
 		end
 end
-	if not minetest.setting_getbool("creative_mode") then
+	if not core.setting_getbool("creative_mode") then
 		itemstack:add_wear(65535 / (USES - 1))
 	end
 	return itemstack
@@ -90,21 +90,21 @@ on_place = function(itemstack, user, pointed_thing)
 
 		if mode == "1" then
 			mode = "2"
-			minetest.chat_send_player(usr,"Ladder Hammer")
+			core.chat_send_player(usr,"Ladder Hammer")
 		elseif mode == "2" then
 			mode = "3"
-			minetest.chat_send_player(usr,"Foot Hold Hammer")
+			core.chat_send_player(usr,"Foot Hold Hammer")
 		elseif mode == "3" then
 			mode = "1"
-			minetest.chat_send_player(usr,"Stair Hammer")
+			core.chat_send_player(usr,"Stair Hammer")
 		end
-	if not minetest.setting_getbool("creative_mode") then
+	if not core.setting_getbool("creative_mode") then
 		itemstack:add_wear(65535 / (USES - 1))
 	end
 	return itemstack
 	end
 })
-minetest.register_craft({
+core.register_craft({
 		output = "mymasonhammer:hammer",
 		recipe = {
 			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
@@ -113,7 +113,7 @@ minetest.register_craft({
 		},
 })
 
-minetest.register_craft({
+core.register_craft({
 		output = "mymasonhammer:hammer",
 		recipe = {
 			{"mymasonhammer:hammer", "default:steel_ingot"},

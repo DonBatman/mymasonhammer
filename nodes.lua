@@ -15,7 +15,7 @@ local item = default_material [i][1]
 local mat = default_material [i][2]
 local desc = default_material [i][3]
 local gro = default_material [i][4]
-minetest.register_node("mymasonhammer:"..mat.."_ladder", {
+core.register_node("mymasonhammer:"..mat.."_ladder", {
 	description =  desc.." Ladder Block",
 	drawtype = "nodebox",
 	tiles = {
@@ -51,7 +51,7 @@ minetest.register_node("mymasonhammer:"..mat.."_ladder", {
 		}
 	},
 })
-minetest.register_node("mymasonhammer:"..mat.."_ladder2", {
+core.register_node("mymasonhammer:"..mat.."_ladder2", {
 	description =  desc.." Ladder Block",
 	drawtype = "nodebox",
 	tiles = {
@@ -81,7 +81,7 @@ minetest.register_node("mymasonhammer:"..mat.."_ladder2", {
 		}
 	},
 })
-minetest.register_node("mymasonhammer:"..mat.."_ladder3", {
+core.register_node("mymasonhammer:"..mat.."_ladder3", {
 	description =  desc.." Ladder Block",
 	drawtype = "nodebox",
 	tiles = {
@@ -111,7 +111,7 @@ minetest.register_node("mymasonhammer:"..mat.."_ladder3", {
 		}
 	},
 })
-minetest.register_node("mymasonhammer:"..mat.."_foot", {
+core.register_node("mymasonhammer:"..mat.."_foot", {
 	description =  desc.." Foot Hold Block",
 	drawtype = "nodebox",
 	tiles = {
@@ -138,7 +138,7 @@ minetest.register_node("mymasonhammer:"..mat.."_foot", {
 	},
 
 })
-minetest.register_node("mymasonhammer:"..mat.."_foot2", {
+core.register_node("mymasonhammer:"..mat.."_foot2", {
 	description =  desc.." Foot Hold Block",
 	drawtype = "nodebox",
 	tiles = {
@@ -165,7 +165,7 @@ minetest.register_node("mymasonhammer:"..mat.."_foot2", {
 	},
 
 })
-minetest.register_node("mymasonhammer:"..mat.."_foot3", {
+core.register_node("mymasonhammer:"..mat.."_foot3", {
 	description =  desc.." Foot Hold Block",
 	drawtype = "nodebox",
 	tiles = {
